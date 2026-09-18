@@ -1,0 +1,19 @@
+name: successor-b
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run independent successor B
+        env:
+          SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6d2NldGR6ZmlhbXV6dmt4bHJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk2MDA2NDYsImV4cCI6MjEwNTE3NjY0Nn0.zQVUUCMP1zEF70Upq_GudrGJGyGbgDcPMGcfvKG4Ix4"
+        run: |
+          set -euo pipefail
+          curl --fail-with-body -sS -X POST             "https://dzwcetdzifamuzvkxlrh.supabase.co/functions/v1/run-successor-b"             -H "Authorization: Bearer $SUPABASE_ANON_KEY"             -H "apikey: $SUPABASE_ANON_KEY"             -H "Content-Type: application/json"             -d '{}'
